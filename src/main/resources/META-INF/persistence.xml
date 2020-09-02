@@ -5,10 +5,13 @@
     <persistence-unit name="datasource" transaction-type="RESOURCE_LOCAL">
         <properties>
             <!-- database connection -->
-            <property name="javax.persistence.jdbc.url" value="" />
-            <property name="javax.persistence.jdbc.user" value="" />
-            <property name="javax.persistence.jdbc.password" value="" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://moktok.javawebdev.com:33306/moktok" />
+            <property name="javax.persistence.jdbc.user" value="moktok" />
+            <property name="javax.persistence.jdbc.password" value="nd8sd75d" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" />
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
     </persistence-unit>
 </persistence>

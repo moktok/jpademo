@@ -2,22 +2,20 @@ package be.infernalwhale;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.ArrayList;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("datasource");
         EntityManager em = emf.createEntityManager();
 
-        Message message = new Message()
-                .setId(2)
-                .setMessage("Hello Doubters");
+        User user = em.find(User.class, 17);
+        user.setUsername("Chocolate Chipolata");
+        System.out.println(user.toString());
 
-        EntityTransaction et = em.getTransaction();
-        et.begin();
-        em.persist(message);
-        et.commit();
+        em.refresh(user);
+        System.out.println(user.toString());
 
         em.close();
         emf.close();

@@ -1,16 +1,26 @@
 package be.infernalwhale;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "message")
 public class Message {
     @Id
-    private int id;
+    @GeneratedValue
+    private Integer id;
     private String message;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public Message setUser(User user) {
+        this.user = user;
+        return this;
+    }
 
     public int getId() {
         return id;
@@ -28,5 +38,13 @@ public class Message {
     public Message setMessage(String message) {
         this.message = message;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", message='" + message + '\'' +
+                '}';
     }
 }
